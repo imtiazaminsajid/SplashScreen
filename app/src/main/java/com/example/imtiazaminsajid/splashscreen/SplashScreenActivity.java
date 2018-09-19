@@ -1,5 +1,6 @@
 package com.example.imtiazaminsajid.splashscreen;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ProgressBar;
@@ -20,13 +21,18 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 doWork();
+                startApp();
             }
         });
+
+        thread.start();
     }
+
+
 
     public void doWork() {
 
-        for (progress = 0; progress > 100; progress = progress + 20) {
+        for (progress = 20; progress <= 100; progress = progress + 20) {
             try {
                 Thread.sleep(1000);
                 progressBar.setProgress(progress);
@@ -35,5 +41,12 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    private void startApp() {
+
+        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
